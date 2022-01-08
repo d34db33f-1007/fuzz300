@@ -130,35 +130,3 @@ for url in e_points:
 if not suc:
     for url in e_points:
         Fuzzer.orv(url)
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
