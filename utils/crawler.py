@@ -25,4 +25,4 @@ class Crawler():
     def clean(self):
         uniqlines = set(open('urls.txt').readlines())
         open('urls.txt', 'w').writelines(set(uniqlines))
-        print(f'Total parsed: {len(uniqlines)} links\n')
+        print(f'Total crawled: {len(uniqlines)} links\n')
