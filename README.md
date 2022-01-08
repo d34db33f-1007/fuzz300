@@ -1,9 +1,11 @@
 
-After Golismero project got dead there is no more any up to date open-source tool that can collect links with parametrs and web-forms so i decided to write one by my own. At the first step this tool does collect all the entry-points for the target website. And then tryes to find open redirect vulnerability. Why this project is better than other open-redirect scanners? It does crawl all the links from the target website and finds potential vulnerable web-forms by itself instead of using CommonCrawl or getting links list from user input. In the future i will probably add more modules to fuzz for SQL Injections and XSS.
+After Golismero project got dead there is no more any up to date open-source tool that can collect links with parametrs and web-forms and then test them, so i decided to write one by my own. At the first step this tool does collect all the entry-points for the target website. And then tryes to find open redirect vulnerability. Why this project is better than other open-redirect scanners? It does recursevely crawl all the links from the target website and finds potential vulnerable web-forms by itself instead of using CommonCrawl or getting links list from user input. In the future i will probably add more modules to fuzz for SQL Injections and XSS.
 
 ### Usage
 
 `~$ python3.8 fuzz300.py https://example.com` 
+
+After running you will also find newly created files with interesting links and all website entry-points.
 
 ### Tips
 
