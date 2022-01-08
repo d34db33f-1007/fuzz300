@@ -3,12 +3,12 @@ After Golismero project got dead there is no more any up to date open-source too
 
 Why this project is better than other open-redirect scanners? It does recursevely crawl all the links from the target website and finds potential vulnerable web-forms by itself instead of using CommonCrawl or getting links list from user input. In the future i will probably add more modules to fuzz for SQL Injections and XSS.
 
-### Instalation
+### Instalation  
 
-`~$ git clone https://github.com/d34db33f-1007/fuzz300.git`
-`~$ pip3 install -r requirements.txt`
+`~$ git clone https://github.com/d34db33f-1007/fuzz300.git`  
+`~$ pip3 install -r requirements.txt`  
 
-### Usage
+### Usage  
 
 `~$ python3.8 fuzz300.py https://example.com` 
 
