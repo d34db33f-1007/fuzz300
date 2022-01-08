@@ -8,7 +8,7 @@ class Clean():
 	def files():
 
 		files = ['urls.txt', 'some_links.txt', 
-				'js_webforms.txt', 'entry_points.txt']
+			'js_webforms.txt', 'entry_points.txt']
 		for file in files:
 			try:
 				os.remove(file)
