@@ -41,7 +41,7 @@ class Scraper():
 
     def form_details(form, domain):
         # returns action, method and form controls
-        details =  f'{form.attrs.get("method", "POST")} '.upper()
+        details =  f'{form.attrs.get("method", "GET")} '.upper()
         if (ac := form.attrs.get("action")): 
             ac = urljoin(f'https://{domain}', ac, allow_fragments=True)
             details += ac
