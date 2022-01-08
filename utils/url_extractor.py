@@ -43,7 +43,7 @@ class Spider(CrawlSpider):
     def parse_url(self, response):
         links = LinkExtractor(canonicalize=True, unique=True).extract_links(response)
         for link in links:
-            print(f'Total parsed: {len(links)} links', end='\r')
+            print(f'Total crawled: {len(links)} links', end='\r')
             for allowed_domain in self.allowed_domains:
                 if allowed_domain in link.url:
                     with open('urls.txt', 'a') as f:

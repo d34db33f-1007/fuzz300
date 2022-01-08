@@ -12,4 +12,4 @@ class Clean():
             try:
                 os.remove(file)
             except:
-		pass
+                pass
