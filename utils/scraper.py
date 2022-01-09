@@ -11,21 +11,21 @@ from bs4 import BeautifulSoup
 
 class Scraper():
 
-    async def get_url(session, url):
+    async def get_url(session, url, cookies):
         user_agent = {'User-Agent': 'Mozilla/5.0 (X11; Ubuntu; Linux i686; rv:78.0) Gecko/20100101 Firefox/78.0'}
         try:
-            async with session.get(url, timeout=15, headers=user_agent) as resp:
+            async with session.get(url, timeout=15, headers=user_agent, cookies=cookies) as resp:
                 if len(url) < 80:
                     print(url, end='\r')
                 return await resp.read()
-        except:
+        except Exception as e:
             pass
 
-    async def get_forms(urls):
+    async def get_forms(urls, cookies=aiohttp.CookieJar()):
         tasks = []
         async with aiohttp.ClientSession(trust_env=True) as session:
             for url in urls:
-                tasks.append(asyncio.create_task(Scraper.get_url(session, url)))
+                tasks.append(asyncio.create_task(Scraper.get_url(session, url, cookies)))
             html_list = await asyncio.gather(*tasks)
 
         print('\n')

@@ -26,6 +26,18 @@ print(banner)
 Clean.files()
 e_points = []
 
+try: 
+    c = sys.argv[2]
+    c = c.split(':')
+    try:
+        sys.argv[2] = dict()
+        sys.argv[2][c[0]] = c[1:]
+    except Exception as e:
+        print('Not valid Cookie format')
+        sys.exit(0)
+except:
+    sys.argv.append({'Cookie': 'None'})
+
 ## crawler
 url = sys.argv[1].split()
 domain = url[0].split('//')[-1].split('www.')[-1]
@@ -50,7 +62,7 @@ for link in links:
                 if a not in _:
                     reg = "(?<=%s)" % ('=')
                     r = re.compile(reg,re.DOTALL)
-                    link = r.sub('FUZZ', link)
+                    link = r.sub('FUZZ,', link)
                     data_urls.append(link)
                     _.append(a)
             else:
@@ -68,7 +80,7 @@ if len(data_urls) > 0:
 
 # get all form tags
 print('Starting to scrape urls for web-forms!\n')
-forms = asyncio.run(Scraper.get_forms(links[:800]))
+forms = asyncio.run(Scraper.get_forms(links[:800], sys.argv[2]))
 
 # iteratte over forms
 det = []
