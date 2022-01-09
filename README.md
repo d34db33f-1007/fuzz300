@@ -11,6 +11,7 @@ Why this project is better than other open-redirect scanners? It does recursevel
 ### Usage  
 
 `~$ python3.8 fuzz300.py https://example.com` 
+`~$ python3.8 fuzz300.py https://www.example.com 'Cookie: user=admin'
 
 After running you will also find newly created files with interesting links and all website entry-points.
 
