@@ -13,7 +13,7 @@ class Crawler():
 
     def start(self):
         process = CrawlerProcess({
-            'USER_AGENT': 'Mozilla/5.0 (X11; Ubuntu; Linux i686; rv:24.0) Gecko/20100101 Firefox/24.0'
+            'USER_AGENT': 'Mozilla/5.0 (X11; Ubuntu; Linux i686; rv:90.0) Gecko/20100101 Firefox/90.0'
             })
 
         Spider.allowed_domains = self.domain
