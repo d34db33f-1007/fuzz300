@@ -12,7 +12,7 @@ from bs4 import BeautifulSoup
 class Scraper():
 
     async def get_url(session, url):
-        user_agent = {'User-Agent': 'Mozilla/5.0 (X11; Ubuntu; Linux i686; rv:24.0) Gecko/20100101 Firefox/24.0'}
+        user_agent = {'User-Agent': 'Mozilla/5.0 (X11; Ubuntu; Linux i686; rv:78.0) Gecko/20100101 Firefox/78.0'}
         try:
             async with session.get(url, timeout=15, headers=user_agent) as resp:
                 if len(url) < 80:
