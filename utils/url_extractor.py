@@ -22,7 +22,7 @@ class Spider(CrawlSpider):
         'DEPTH_PRIORITY': 1,
         'LOG_ENABLED': False,
         #'MAX_REQUESTS_PER_DOMAIN': 20,
-        #'CONCURRENT_REQUESTS': 101
+        'CONCURRENT_REQUESTS': 60
         }
 
 ### When writing crawl spider rules, avoid using parse as callback, 

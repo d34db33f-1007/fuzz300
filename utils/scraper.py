@@ -11,10 +11,10 @@ from bs4 import BeautifulSoup
 
 class Scraper():
 
-    async def get_url(session, url, cookies):
-        user_agent = {'User-Agent': 'Mozilla/5.0 (X11; Ubuntu; Linux i686; rv:78.0) Gecko/20100101 Firefox/78.0'}
+    async def get_url(session, url, c, sem):
+        ua = {'User-Agent': 'Mozilla/5.0 (X11; Ubuntu; Linux i686; rv:78.0) Gecko/20100101 Firefox/78.0'}
         try:
-            async with session.get(url, timeout=15, headers=user_agent, cookies=cookies) as resp:
+            async with sem, session.get(url, timeout=15, headers=ua, cookies=c, raise_for_status=True) as resp:
                 if len(url) < 80:
                     print(url, end='\r')
                 return await resp.read()
@@ -23,10 +23,12 @@ class Scraper():
 
     async def get_forms(urls, cookies=aiohttp.CookieJar()):
         tasks = []
-        async with aiohttp.ClientSession(trust_env=True) as session:
+        # conn = aiohttp.TCPConnector(limit=30)
+        sem = asyncio.Semaphore(50)
+        async with aiohttp.ClientSession(trust_env=True, raise_for_status=True) as session: # conn
             for url in urls:
-                tasks.append(asyncio.create_task(Scraper.get_url(session, url, cookies)))
-            html_list = await asyncio.gather(*tasks)
+                tasks.append(asyncio.create_task(Scraper.get_url(session, url, cookies, sem)))
+            html_list = await asyncio.gather(*tasks, return_exceptions=True)
 
         print('\n')
         forms = []
