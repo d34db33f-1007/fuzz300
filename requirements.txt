@@ -1,2 +1,4 @@
+bs4
 wfuzz
-scrapy
+aiohttp
+urllib
