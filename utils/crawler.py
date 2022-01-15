@@ -22,7 +22,6 @@ class Crawler():
         self.visited = []
         self.lst = []
         self.lst += urls
-#        self.run(urls)
 
     def check(self, path):
         if path and path.startswith('/'):
@@ -60,10 +59,8 @@ class Crawler():
                         path = link.get('href')
                         path = self.check(path)
                         if path and path not in self.visited:
-#                            print(path)
                             self.lst.append(path)
                 except Exception as e:
-                    # print(e)
                     pass
 
                 try:
@@ -71,10 +68,8 @@ class Crawler():
                         path = link
                         path = self.check(path)
                         if path and path not in self.visited:
-#                            print(path)
                             self.lst.append(path)
                 except Exception as e:
-                    # print(e)
                     pass
                 self.lst = list(set(self.lst))
 
