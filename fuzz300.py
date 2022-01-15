@@ -9,7 +9,7 @@ import asyncio
 from utils.clean import Clean
 from utils.crawler import Crawler
 from utils.scraper import Scraper
-from utils.fuzz import Fuzzer
+from utils.fuzzer import Fuzzer
 
 banner = '''
                 __ 
