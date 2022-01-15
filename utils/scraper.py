@@ -24,7 +24,7 @@ class Scraper():
     async def get_forms(urls, cookies=aiohttp.CookieJar()):
         tasks = []
         # conn = aiohttp.TCPConnector(limit=30)
-        sem = asyncio.Semaphore(50)
+        sem = asyncio.Semaphore(100)
         async with aiohttp.ClientSession(trust_env=True, raise_for_status=True) as session: # conn
             for url in urls:
                 tasks.append(asyncio.create_task(Scraper.get_url(session, url, cookies, sem)))
@@ -41,7 +41,13 @@ class Scraper():
                 continue
         return forms
 
-    def form_details(form, domain):
+    async def form_details(forms, d):
+        tasks = []
+        for form in forms:
+            tasks.append(asyncio.create_task(Scraper.details(form, d)))
+        return await asyncio.gather(*tasks)
+
+    async def details(form, domain):
         # returns action, method and form controls
         details =  f'{form.attrs.get("method", "GET")} '.upper()
         if (ac := form.attrs.get("action")): 

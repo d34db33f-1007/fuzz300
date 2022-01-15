@@ -84,19 +84,23 @@ forms = asyncio.run(Scraper.get_forms(links[:800], sys.argv[2]))
 
 # iteratte over forms
 det = []
+data = []
 weburls = []
-for data in forms:
-    for line in data:
-        # get form details
-        details = Scraper.form_details(line, domain[0])
-        if not details:
-            continue
-        if len(details) > 350:
-            continue
-        if details.split('&')[0] in det:
-            continue
-        weburls.append(details)
-        det.append(details.split('&')[0])
+for f in forms:
+    for _ in f:
+        data.append(_)
+
+# get form details
+details = asyncio.run(Scraper.form_details(data, domain[0]))
+for d in details:
+    if not d:
+        continue
+    if len(d) > 350:
+        continue
+    if d.split('&')[0] in det:
+        continue
+    weburls.append(d)
+    det.append(d.split('&')[0])
 
 # remove duplicates
 weburls = list(set(weburls))
@@ -141,4 +145,9 @@ for url in e_points:
 
 if not suc:
     for url in e_points:
-        Fuzzer.orv(url)
+        try:
+            Fuzzer.orv(url)
+        except KeyboardInterrupt:
+            sys.exit(0)
+        except:
+            continue

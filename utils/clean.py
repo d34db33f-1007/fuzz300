@@ -6,7 +6,7 @@ import os
 class Clean():
 
     def files():
-        files = ['urls.txt', 'some_links.txt', 
+        files = ['urls.txt', 'some_links.txt', 'results.txt',
                  'js_webforms.txt', 'entry_points.txt']
         for file in files:
             try:
