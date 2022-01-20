@@ -7,8 +7,7 @@ import argparse
 from typing import Any
 
 def cookies(value: str):
-    c = value
-    c = c.split(':')
+    c = value.split(':')
     try:
         value = dict()
         value[c[0]] = c[1:]

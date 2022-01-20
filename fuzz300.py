@@ -88,7 +88,8 @@ def scrap(domain: List, _: str, cookies):
     # filter results
     for webf in weburls:
         if webf.lstrip('GET ').startswith('http'):
-            e_points.append(webf.lstrip('GET '))
+            webf = filter_links(webf.lstrip('GET '), domain[0])
+            e_points.append(webf)
         else:
             with open('js_webforms.txt', 'a') as f:
                 f.write(f'{webf}\n')
@@ -116,6 +117,7 @@ def openredirect():
         except KeyboardInterrupt:
             sys.exit(0)
 
+
 if __name__ == '__main__':
     args = parser.parse_args()
     print(banner)
@@ -128,3 +130,5 @@ if __name__ == '__main__':
     crawl(url)
     scrap(domain, args.url, args.cookies)
     openredirect()
+
+

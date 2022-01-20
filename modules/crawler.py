@@ -37,7 +37,7 @@ class Crawler():
         # filtering out non-relative websites
         if self.domain in path:
             # checking for extensions
-            if len(path.split('//')[1].split('/')) > 2:
+            if len(path[:-1].split('//')[1].split('/')) > 2:
                 if re.match('.*.*', path):
                     # filtering out website asset files
                     return self.recheck(path)
@@ -49,11 +49,10 @@ class Crawler():
             if path.endswith(e):
                 return path
         # filtering extensions that are out the list
+        _ = path.split('?')
         for n in range(-7, -2):
             try:
-                if path.split('?')[-1][n] == '.':
-                    return False
-                elif path.split('?')[-2][n] == '.':
+                if any(c == '.' for c in [_[-1][n], _[-2][n]]):
                     return False
             except:
                 continue

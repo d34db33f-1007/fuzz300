@@ -1,7 +1,8 @@
 #!/usr/bin/env python3
 
 import os
-import re
+
+from urllib.parse import urlsplit, parse_qs, quote
 
 def clear():
     files = ['urls.txt', 'some_links.txt', 'results.txt', 
@@ -15,8 +16,14 @@ def clear():
 def filter_links(link, domain):
     if domain in link.split('?')[0]:
         if len(link) < 150:
-            r = re.compile('(?<=\=)', re.DOTALL)
-            link = r.sub('FUZZ,', link)
+            query = urlsplit(link).query
+            params = parse_qs(query, keep_blank_values=True)
+            for k, v in params.items():
+                link = link.replace(f'{k}={quote(v[0], safe="")}', f'{k}=FUZZ')
+                link = link.replace(f'{k}={quote(v[0]}', f'{k}=FUZZ')
+                link = link.replace(f'{k}={v[0]}', f'{k}=FUZZ')
+#            r = re.compile('(?<=\=)', re.DOTALL)
+#            link = r.sub('FUZZ,', link)
             return link
         else:
             with open('some_links.txt', 'a') as f:
