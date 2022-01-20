@@ -20,7 +20,7 @@ def filter_links(link, domain):
             params = parse_qs(query, keep_blank_values=True)
             for k, v in params.items():
                 link = link.replace(f'{k}={quote(v[0], safe="")}', f'{k}=FUZZ')
-                link = link.replace(f'{k}={quote(v[0]}', f'{k}=FUZZ')
+                link = link.replace(f'{k}={quote(v[0])}', f'{k}=FUZZ')
                 link = link.replace(f'{k}={v[0]}', f'{k}=FUZZ')
 #            r = re.compile('(?<=\=)', re.DOTALL)
 #            link = r.sub('FUZZ,', link)
