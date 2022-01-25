@@ -49,10 +49,10 @@ def scrap(domain: List, _: str, cookies):
     for link in links:
         if len(urlparse(link).query) > 0:
             link = filter_links(link, domain[0])
-            if link and link not in data_urls:
-                if (a := link.split('?')[0]) not in _:
-                    data_urls.append(link)
-                    _.append(a)
+        if link and link not in data_urls:
+            if (a := link.split('?')[0]) not in _:
+                data_urls.append(link)
+                _.append(a)
 
     e_points += data_urls
     if len(data_urls) > 0:
