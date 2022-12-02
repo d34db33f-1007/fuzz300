@@ -52,8 +52,12 @@ class Crawler():
         _ = path.split('?')
         for n in range(-7, -2):
             try:
-                if any(c == '.' for c in [_[-1][n], _[-2][n]]):
-                    return False
+                if len(_) > 2:
+                    if any(c == '.' for c in [_[-1][n], _[-2][n]]):
+                        return False
+                else:
+                    if any(c == '.' for c in _[0][n]):
+                        return False
             except:
                 continue
         return path
