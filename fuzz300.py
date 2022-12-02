@@ -101,7 +101,8 @@ def scrap(domain: List, _: str, cookies):
         # write all valid entry points to the file
         with open('entry_points.txt', 'w') as f:
             for p in e_points:
-                f.write(f'{p}\n')
+                if len(p.split('?')) > 1:
+                    f.write(f'{p}\n')
 
 def openredirect():
     global e_points
